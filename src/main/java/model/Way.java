@@ -1,6 +1,6 @@
 package model;
 
 public class Way {
-    private final Node[] nodes;
+   // private final Node[] nodes;
 
 }

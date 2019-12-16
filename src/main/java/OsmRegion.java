@@ -55,6 +55,7 @@ public class OsmRegion {
 
     public void createAdjList() {
         this.adjList = new AdjList(Util.memoryStorageToWays(o5M_Data));
+        o5M_Data = null;
         System.out.println("createAdjList() OK");
     }
 
