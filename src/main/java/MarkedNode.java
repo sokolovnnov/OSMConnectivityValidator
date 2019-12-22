@@ -5,17 +5,26 @@ public class MarkedNode {
 
     private long id;
     private long wayId;
+    public long[] wayIds;
     private boolean visited;
     private boolean isolated;
     private int connectedComponentId;
     private int connectedComponentSize;
-    public HashSet<Long> neighbours;
+ //   public HashSet<Long> neighbours;
+    public long[] nghbrs;
 
-    public MarkedNode(long id, HashSet<Long> neighbours, long wayId) {
+    public MarkedNode(long id, long wayId, long[] nghbrs) {
+        this.id = id;
+        this.wayIds = new long[]{wayId};
+        this.wayId = wayId; //todo от этого поля нужно избавитсь
+        this.nghbrs = nghbrs;
+    }
+
+ /*   public MarkedNode(long id, HashSet<Long> neighbours, long wayId) {
         this.id = id;
         this.neighbours = neighbours;
         this.wayId = wayId;
-    }
+    }*/
 
     public long getId() {
         return id;
@@ -49,13 +58,8 @@ public class MarkedNode {
         this.connectedComponentId = connectedComponentId;
     }
 
-    public HashSet<Long> getNeighbours() {
-        return neighbours;
-    }
 
-    public void setNeighbours(HashSet<Long> neighbours) {
-        this.neighbours = neighbours;
-    }
+
 
     public int getConnectedComponentSize() {
         return connectedComponentSize;

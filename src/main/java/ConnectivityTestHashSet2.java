@@ -29,7 +29,7 @@ public class ConnectivityTestHashSet2 {
         Util.connectivityTwoRegion(nn, iv);
         Util.connectivityTwoRegion(nn, kos);
         Util.connectivityTwoRegion(nn, ki);
-//        baseTest.outerConnectivityTest(nn);
+        baseTest.outerConnectivityTest(nn);
         for (HashSet<Long> way: nn.adjList.getIsolatedWayIds()){
 
             System.out.println(way);
