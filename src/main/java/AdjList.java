@@ -46,8 +46,8 @@ public class AdjList {
             }
         }
 
-        System.out.println(adjHashMap.size());
-        System.out.println(adjHashMap.get(580334994L));
+        System.out.println("Количество узлов в списке связности: " + adjHashMap.size());
+//        System.out.println(adjHashMap.get(580334994L));
 
     }
 
@@ -92,7 +92,7 @@ public class AdjList {
 
         System.out.println("количество графов: " + connectedComponentId);
         for (Long lon : adjHashMap.keySet()) {
-            if (adjHashMap.get(lon).getConnectedComponentSize() < 1000) {
+            if (adjHashMap.get(lon).getConnectedComponentSize() < 100000) {
                 adjHashMap.get(lon).setIsolated(true);
             }
         }

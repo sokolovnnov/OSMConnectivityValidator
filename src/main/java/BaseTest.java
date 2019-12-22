@@ -33,12 +33,12 @@ public class BaseTest {
             }
         }
         System.out.println("outer test done");
-        for (long node: osmRegion.getAdjList().getAdjHashMap().keySet()){
-            if (osmRegion.getAdjList().getAdjHashMap().get(node).isIsolated()) {
-                System.out.println(osmRegion.getAdjList().getAdjHashMap().get(node).getConnectedComponentId() + ": " +
-                        + osmRegion.getAdjList().getAdjHashMap().get(node).getId());
-            }
-        }
+//        for (long node: osmRegion.getAdjList().getAdjHashMap().keySet()){
+//            if (osmRegion.getAdjList().getAdjHashMap().get(node).isIsolated()) {
+//                System.out.println(osmRegion.getAdjList().getAdjHashMap().get(node).getConnectedComponentId() + ": " +
+//                        + osmRegion.getAdjList().getAdjHashMap().get(node).getId());
+//            }
+//        }
 
     }
 

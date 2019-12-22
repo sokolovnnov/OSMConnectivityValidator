@@ -11,7 +11,8 @@ public class Util {
             if (regionOne.adjList.getNode(nodeId).isIsolated()) {
                 if (regionTwo.adjList.contains(nodeId)) {
                     int rOneConnectedComponentId = regionOne.adjList.getNode(nodeId).getConnectedComponentId();
-                    System.out.println("граф " + rOneConnectedComponentId + "соединен с соседом, точка: " + nodeId);
+                    System.out.println("r1: " + regionOne.name + ", r2: " + regionTwo.name);
+                    System.out.println("граф " + rOneConnectedComponentId + " соединен с соседом, точка: " + nodeId);
 
                     //add setIsolated(false) to all nodes of found ConnectedComponent
                     for (long ndId : regionOne.adjList.getNodeSet()) {

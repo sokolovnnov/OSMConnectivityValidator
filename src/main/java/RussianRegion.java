@@ -1,5 +1,5 @@
 enum RussianRegion {
-    NN(52, new int[]{12, 13, 21, 33, 37, 43, 44, 62}, "z:\\osmtmp\\RU-NIZ.o5m" ),
+  /*  NN(52, new int[]{12, 13, 21, 33, 37, 43, 44, 62}, "z:\\osmtmp\\RU-NIZ.o5m" ),
     VLADIMIR(33, new int[]{37, 50, 52, 62, 76}, "z:\\osmtmp\\RU-VLA.o5m" ),
     IVANOVO(37, new int[]{33, 52, 44, 76}, "z:\\osmtmp\\RU-IVA.o5m" ),
     KOSTROMA(44, new int[]{33, 37, 35, 43, 52, 76}, "z:\\osmtmp\\RU-KOS.o5m" ),
@@ -61,11 +61,11 @@ enum RussianRegion {
     HANTY_MAN(86, new int[]{11, 24, 55, 66, 70, 72, 89}, "z:\\osmtmp\\RU-KHM.o5m" ),
     YAMAL(89, new int[]{11, 24, 83, 86}, "z:\\osmtmp\\RU-YAN.o5m" ),
     NARYAN_MAR(83, new int[]{11, 29, 89}, "z:\\osmtmp\\RU-NEN.o5m" ),
-    ARHANGELSK(29, new int[]{10, 11, 35, 43, 83}, "z:\\osmtmp\\RU-ARK.o5m" ),
+    ARHANGELSK(29, new int[]{10, 11, 35, 43, 83}, "z:\\osmtmp\\RU-ARK.o5m" ),*/
 //    YAROSLAVL(76, new int[]{33, 35, 37, 44, 50, 69}, "z:\\osmtmp\\RU-YAR.o5m" ),
     //    YAROSLAVL(76, new int[]{33, 35, 37, 44, 50, 69}, "z:\\osmtmp\\RU-YAR.o5m" ),
 
-  /*  NN(52, new int[]{12, 13, 21, 33, 37, 43, 44, 62}, "e:\\osmtmp\\RU-NIZ.o5m" ),
+    NN(52, new int[]{12, 13, 21, 33, 37, 43, 44, 62}, "e:\\osmtmp\\RU-NIZ.o5m" ),
     VLADIMIR(33, new int[]{37, 50, 52, 62, 76}, "e:\\osmtmp\\RU-VLA.o5m" ),
     IVANOVO(37, new int[]{33, 52, 44, 76}, "e:\\osmtmp\\RU-IVA.o5m" ),
     KOSTROMA(44, new int[]{33, 37, 35, 43, 52, 76}, "e:\\osmtmp\\RU-KOS.o5m" ),
@@ -128,7 +128,6 @@ enum RussianRegion {
     YAMAL(89, new int[]{11, 24, 83, 86}, "e:\\osmtmp\\RU-YAN.o5m" ),
     NARYAN_MAR(83, new int[]{11, 29, 89}, "e:\\osmtmp\\RU-NEN.o5m" ),
     ARHANGELSK(29, new int[]{10, 11, 35, 43, 83}, "e:\\osmtmp\\RU-ARK.o5m" ),
-    */
 ;
     String path;
     int[] neighbors;
