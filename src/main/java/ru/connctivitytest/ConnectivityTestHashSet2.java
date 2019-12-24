@@ -1,10 +1,7 @@
-import org.alex73.osmemory.MemoryStorage;
-import org.alex73.osmemory.OsmNode;
+package ru.connctivitytest;
+
 import org.alex73.osmemory.OsmSimpleNode;
 import org.alex73.osmemory.OsmWay;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 
 public class ConnectivityTestHashSet2 {
     private static long start;

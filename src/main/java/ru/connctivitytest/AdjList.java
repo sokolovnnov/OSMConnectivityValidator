@@ -1,3 +1,5 @@
+package ru.connctivitytest;
+
 import org.alex73.osmemory.OsmWay;
 
 import java.util.*;
@@ -90,9 +92,9 @@ public class AdjList {
             connectedComponentId++;
         }
 
-        System.out.println("количество графов: " + connectedComponentId);
+        System.out.println("количество графов: " + connectedComponentId);//todo от Isolated можно избавиться, а можно и не избавляться
         for (Long lon : adjHashMap.keySet()) {
-            if (adjHashMap.get(lon).getConnectedComponentSize() < 100000) {
+            if (adjHashMap.get(lon).getConnectedComponentSize() < 1000) {
                 adjHashMap.get(lon).setIsolated(true);
             }
         }
@@ -114,7 +116,7 @@ public class AdjList {
         return this;
     }*/
 
-
+//fixme видимо, ненужный метод
     HashSet[] getIsolatedWayIds() {
         //ArrayList<HashSet<Long>> isolatedWays = new ArrayList<>(1000);
         HashSet[] isolatedWays = new HashSet[1000];
@@ -123,6 +125,7 @@ public class AdjList {
 //
 //        }
         for (long node : adjHashMap.keySet()) {
+            //если
             if (adjHashMap.get(node).getConnectedComponentSize() > 1000) continue;
             //  isolatedWays.add(adjHashMap.get(node).getConnectedComponentId(), new HashSet<>());
             if (isolatedWays[adjHashMap.get(node).getConnectedComponentId()] == null) {

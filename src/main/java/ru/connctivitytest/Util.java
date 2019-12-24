@@ -1,3 +1,5 @@
+package ru.connctivitytest;
+
 import org.alex73.osmemory.MemoryStorage;
 import org.alex73.osmemory.OsmWay;
 

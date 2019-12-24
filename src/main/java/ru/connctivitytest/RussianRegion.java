@@ -1,3 +1,5 @@
+package ru.connctivitytest;
+
 enum RussianRegion {
   /*  NN(52, new int[]{12, 13, 21, 33, 37, 43, 44, 62}, "z:\\osmtmp\\RU-NIZ.o5m" ),
     VLADIMIR(33, new int[]{37, 50, 52, 62, 76}, "z:\\osmtmp\\RU-VLA.o5m" ),

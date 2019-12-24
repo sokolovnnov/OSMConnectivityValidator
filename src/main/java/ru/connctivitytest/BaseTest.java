@@ -1,3 +1,5 @@
+package ru.connctivitytest;
+
 public class BaseTest {
     static OsmRegion[] innerTestCompletedRegions = new OsmRegion[150];
 

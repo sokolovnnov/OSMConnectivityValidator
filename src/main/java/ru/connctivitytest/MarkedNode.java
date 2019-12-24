@@ -1,4 +1,5 @@
-import java.util.HashSet;
+package ru.connctivitytest;
+
 import java.util.Objects;
 
 public class MarkedNode {
@@ -25,6 +26,8 @@ public class MarkedNode {
         this.neighbours = neighbours;
         this.wayId = wayId;
     }*/
+
+
 
     public long getId() {
         return id;

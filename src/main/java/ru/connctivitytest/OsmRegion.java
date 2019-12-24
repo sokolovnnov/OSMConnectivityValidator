@@ -1,8 +1,9 @@
+package ru.connctivitytest;
+
 import org.alex73.osmemory.MemoryStorage;
 import org.alex73.osmemory.O5MReader;
 
 import java.io.File;
-import java.util.HashMap;
 
 public class OsmRegion {
 
