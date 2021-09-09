@@ -1,5 +1,8 @@
 package ru.connectivitytest.site;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,6 +20,8 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class ResultRepository {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     private final JdbcTemplate jdbcTemplate;
 
     private static final RowMapper<SimpleNode> ROW_MAPPER = BeanPropertyRowMapper.newInstance(SimpleNode.class);
@@ -25,7 +30,10 @@ public class ResultRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Cacheable("ways")
     public List<SimpleWay> getAll() {
+        log.info("getAll");
+
         List<SimpleNode> simpleNodes =  jdbcTemplate.query("SELECT * FROM nodes ORDER BY way_osm_id DESC ", ROW_MAPPER);
 
         Collection<List<SimpleNode>> simpleNodeList = simpleNodes.stream()
