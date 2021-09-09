@@ -1,0 +1,120 @@
+package ru.connectivitytest;
+
+public class InMemoryRegionRepository {
+
+ /*   public static final InMemoryRegionRepository REPOSITORY = new InMemoryRegionRepository();
+    private final HashMap<Integer, OsmRegion2> regions = new HashMap<>();
+    private static final String PATH = "d:\\osmtmp\\";
+
+    static {
+        //this.regions = new HashMap<>();
+
+        REPOSITORY.regions.put(52, new OsmRegion2("NN", 52, true,
+                new int[]{12, 13, 21, 33, 37, 43, 44, 62}, PATH + "RU-NIZ.o5m"));
+        REPOSITORY.regions.put(33, new OsmRegion2("VLA", 33, true,
+                new int[]{37, 50, 52, 62, 76}, PATH + "RU-VLA.o5m"));
+        REPOSITORY.regions.put(37, new OsmRegion2("IVA", 37, true,
+                new int[]{33, 52, 44, 76}, PATH + "RU-IVA.o5m"));
+        REPOSITORY.regions.put(44, new OsmRegion2("KOS", 44, true,
+                new int[]{33, 37, 35, 43, 52, 76}, PATH + "RU-KOS.o5m"));
+        REPOSITORY.regions.put(43, new OsmRegion2("KIR", 43, true,
+                new int[]{11, 12, 16, 18, 29, 35, 44, 52, 59}, PATH + "RU-KIR.o5m"));
+        REPOSITORY.regions.put(12, new OsmRegion2("ME", 12, true,
+                new int[]{16, 21, 43, 52}, PATH + "RU-ME.o5m"));
+        REPOSITORY.regions.put(21, new OsmRegion2("CU", 21, true,
+                new int[]{12, 13, 16, 52, 73}, PATH + "RU-CU.o5m"));
+        REPOSITORY.regions.put(13, new OsmRegion2("MO", 13, true,
+                new int[]{21, 52, 58, 62, 73}, PATH + "RU-MO.o5m"));
+        REPOSITORY.regions.put(62, new OsmRegion2("RYA", 62, true,
+                new int[]{13, 33, 48, 50, 52, 58, 68, 71}, PATH + "RU-RYA.o5m"));
+        REPOSITORY.regions.put(16, new OsmRegion2("TA", 16, true,
+                new int[]{2, 12, 18, 21, 43, 56, 63, 73}, PATH + "RU-TA.o5m"));
+        REPOSITORY.regions.put(73, new OsmRegion2("ULY", 73, true,
+                new int[]{13, 16, 21, 58, 63, 64}, PATH + "RU-ULY.o5m"));
+        REPOSITORY.regions.put(58, new OsmRegion2("PNZ", 58, true,
+                new int[]{13, 62, 64, 68, 73}, PATH + "RU-PNZ.o5m"));
+        REPOSITORY.regions.put(35, new OsmRegion2("VLG", 35, true,
+                new int[]{10, 29, 43, 44, 47, 53, 69, 76}, PATH + "RU-VLG.o5m"));
+        REPOSITORY.regions.put(76, new OsmRegion2("YAR", 76, true,
+                new int[]{33, 35, 37, 44, 50, 69}, PATH + "RU-YAR.o5m"));
+        REPOSITORY.regions.put(51, new OsmRegion2("MUR", 51, true,
+                new int[]{10}, PATH + "RU-MUR.o5m")); // ДОБАВИТЬ НОРВЕГ, ФИН
+        REPOSITORY.regions.put(10, new OsmRegion2("KR", 10, true,
+                new int[]{29, 35, 47, 51}, PATH + "RU-KR.o5m"));//ДОБАВИТЬ ФИН
+        REPOSITORY.regions.put(47, new OsmRegion2("LEN", 47, true,
+                new int[]{10, 35, 53, 60}, PATH + "RU-LEN.o5m"));//ДОБАВИТЬ ФИН, ЭСТ
+
+        REPOSITORY.regions.put(60, new OsmRegion2("PSK", 60, true,
+                new int[]{47, 53, 67, 69}, PATH + "RU-PSK.o5m"));//ДОБАВИТЬ ЭСТ, ЛАТ, БЕЛАРУ
+        REPOSITORY.regions.put(69, new OsmRegion2("TVE", 69, true,
+                new int[]{35, 50, 53, 60, 67, 76}, PATH + "RU-TVE.o5m"));
+        REPOSITORY.regions.put(53, new OsmRegion2("NGR", 53, true,
+                new int[]{35, 47, 60, 69}, PATH + "RU-NGR.o5m"));
+        REPOSITORY.regions.put(67, new OsmRegion2("SMO", 67, true,
+                new int[]{32, 40, 50, 60, 69}, PATH + "RU-SMO.o5m"));//ДОБАВИТЬ БЕЛАРУС
+        REPOSITORY.regions.put(50, new OsmRegion2("MOS", 50, true,
+                new int[]{33, 40, 62, 67, 69, 71, 76}, PATH + "RU-MOS.o5m"));
+        REPOSITORY.regions.put(40, new OsmRegion2("KLU", 40, true,
+                new int[]{32, 50, 57, 67, 71}, PATH + "RU-KLU.o5m"));
+        REPOSITORY.regions.put(32, new OsmRegion2("BRY", 32, true,
+                new int[]{40, 46, 57, 67}, PATH + "RU-BRY.o5m")); //ДОБАВИТЬ УКР, БЕЛАРУС
+
+        REPOSITORY.regions.put(71, new OsmRegion2("TUL", 71, true, new int[]{40, 48, 50, 57, 62}, PATH + "RU-TUL.o5m"));
+        REPOSITORY.regions.put(57, new OsmRegion2("ORL", 57, true, new int[]{32, 40, 46, 48, 71}, PATH + "RU-ORL.o5m"));
+        REPOSITORY.regions.put(46, new OsmRegion2("KRS", 46, true, new int[]{31, 32, 36, 48, 57}, PATH + "RU-KRS.o5m")); //ДОБАВИТЬ УКР
+        REPOSITORY.regions.put(31, new OsmRegion2("BEL", 31, true, new int[]{36, 46}, PATH + "RU-BEL.o5m")); //ДОБАВИТЬ УКР
+        REPOSITORY.regions.put(48, new OsmRegion2("LIP", 48, true, new int[]{36, 46, 57, 62, 68, 71}, PATH + "RU-LIP.o5m"));
+        REPOSITORY.regions.put(68, new OsmRegion2("TAM", 68, true, new int[]{36, 48, 58, 62, 64}, PATH + "RU-TAM.o5m"));
+        REPOSITORY.regions.put(36, new OsmRegion2("VOR", 36, true, new int[]{31, 34, 46, 48, 61, 64, 68}, PATH + "RU-VOR.o5m")); //ДОБАВИТЬ УКР
+        REPOSITORY.regions.put(64, new OsmRegion2("SAR", 64, true, new int[]{34, 36, 58, 63, 68, 73}, PATH + "RU-SAR.o5m")); //ДОБАВИТЬ КАЗА
+
+        REPOSITORY.regions.put(34, new OsmRegion2("VGG", 34, true, new int[]{8, 30, 36, 61, 64}, PATH + "RU-VGG.o5m"));//ДОБАВИТЬ КАЗА
+        REPOSITORY.regions.put(30, new OsmRegion2("AST", 30, true, new int[]{8, 34}, PATH + "RU-AST.o5m")); //ДОБАВИТЬ КАЗА
+        REPOSITORY.regions.put( 8, new OsmRegion2( "KL",  8, true, new int[]{5, 26, 30, 34, 61}, PATH + "RU-KL.o5m"));
+        REPOSITORY.regions.put(61, new OsmRegion2("ROS", 61, true, new int[]{8, 23, 26, 34, 36}, PATH + "RU-ROS.o5m"));//ДОБАВИТЬ УКР
+        REPOSITORY.regions.put(92, new OsmRegion2("SEV", 92, true, new int[]{82}, PATH + "RU-SEV.o5m"));
+        REPOSITORY.regions.put(82, new OsmRegion2( "CR", 82, true, new int[]{82, 23}, PATH + "RU-CR.o5m"));
+        //ДОБАВИТЬ УКР
+        REPOSITORY.regions.put(23, new OsmRegion2("KDA", 23, true, new int[]{9, 26, 61, 82}, PATH + "RU-KDA.o5m")); //ДОБАВИТЬ АБХАЗИ
+        REPOSITORY.regions.put(26, new OsmRegion2("STA", 26, true, new int[]{5, 7, 8, 9, 15, 20, 23, 61}, PATH + "RU-STA.o5m"));
+        REPOSITORY.regions.put( 9, new OsmRegion2( "KC",  9, true, new int[]{7, 23, 26}, PATH + "RU-KC.o5m")); //
+        // ДОБАВИТЬ АБХ, ГРУ
+
+        REPOSITORY.regions.put(7, new OsmRegion2("KB", 7, true, new int[]{9, 15, 26}, PATH + "RU-KB.o5m")); // ДОБАВИТЬ
+        // ГРУ
+        REPOSITORY.regions.put(15, new OsmRegion2("SE", 15, true, new int[]{6, 7, 20, 26}, PATH + "RU-SE.o5m")); // ДОБАВИТЬ ГРУ, ОСЕТ
+        REPOSITORY.regions.put( 6, new OsmRegion2("IN",  6, true, new int[]{15, 20}, PATH + "RU-IN.o5m")); //
+        // ДОБАВИТЬ ГРУЗ
+        REPOSITORY.regions.put(20, new OsmRegion2("CE", 20, true, new int[]{5, 6, 15, 26}, PATH + "RU-CE.o5m")); // ДОБАВИТЬ ГРУ
+        REPOSITORY.regions.put( 5, new OsmRegion2("DA",  5, true, new int[]{8, 20, 26}, PATH + "RU-DA.o5m")); //  ДОБАВИТЬ ГРУ,
+        // АЗЕР
+        REPOSITORY.regions.put(63, new OsmRegion2("SAM", 63, true, new int[]{16, 56, 64, 73}, PATH + "RU-SAM.o5m"));/// ДОБАВИТЬ КАЗА
+        REPOSITORY.regions.put(56, new OsmRegion2("ORE", 56, true, new int[]{2, 16, 63, 64, 74}, PATH + "RU-ORE.o5m")); // ДОБАВИТЬ КАЗА
+        REPOSITORY.regions.put( 2, new OsmRegion2("BA",  2, true, new int[]{16, 18, 56, 59, 66, 74}, PATH+"RU-BA.o5m"));
+        REPOSITORY.regions.put(74, new OsmRegion2("CHE",74, true, new int[]{2, 45, 56, 66}, PATH + "RU-CHE.o5m"));
+        //ДОБАВИТЬ КАЗА
+
+        REPOSITORY.regions.put(18, new OsmRegion2("UD",  18, true, new int[]{2, 16, 43, 59}, PATH + "RU-UD.o5m"));
+        REPOSITORY.regions.put(59, new OsmRegion2("PER", 59, true, new int[]{2, 11, 18, 43, 66}, PATH + "RU-PER.o5m"));
+        REPOSITORY.regions.put(66, new OsmRegion2("SVE", 66, true, new int[]{2, 11, 45, 59, 72, 74, 86}, PATH + "RU-SVE.o5m"));
+        REPOSITORY.regions.put(11, new OsmRegion2("KO",  11, true, new int[]{29, 43, 59, 66, 83, 86, 89}, PATH + "RU" +
+                                                                                                          "-KO.o5m"));
+        REPOSITORY.regions.put(86, new OsmRegion2("KHM", 86, true, new int[]{11, 24, 55, 66, 70, 72, 89}, PATH + "RU-KHM.o5m"));
+        REPOSITORY.regions.put(89, new OsmRegion2("YAN", 89, true, new int[]{11, 24, 83, 86}, PATH + "RU-YAN.o5m"));
+        REPOSITORY.regions.put(83, new OsmRegion2("NEN", 83, true, new int[]{11, 29, 89}, PATH + "RU-NEN.o5m"));
+        REPOSITORY.regions.put(29, new OsmRegion2("ARK", 29, true, new int[]{10, 11, 35, 43, 83}, PATH + "RU-ARK.o5m"));
+
+    }
+
+    public String getPathById(int id){
+        return REPOSITORY.regions.get(id).getPath();
+    }
+
+    public Collection<OsmRegion2> getAll() {
+        return REPOSITORY.regions.values();
+    }
+
+    public OsmRegion2 get(int id) {
+        return REPOSITORY.regions.get(id);
+    }*/
+}
