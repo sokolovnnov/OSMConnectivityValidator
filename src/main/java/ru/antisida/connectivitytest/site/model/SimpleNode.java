@@ -1,4 +1,4 @@
-package ru.connectivitytest.site.model;
+package ru.antisida.connectivitytest.site.model;
 
 public class SimpleNode {
 

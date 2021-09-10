@@ -1,10 +1,10 @@
-package ru.connectivitytest.validator.service;
+package ru.antisida.connectivitytest.validator.service;
 
 import org.springframework.stereotype.Service;
-import ru.connectivitytest.validator.StorageUtil;
-import ru.connectivitytest.site.model.SimpleNode;
-import ru.connectivitytest.validator.repository.IsolatedWayJdbcRepository;
-import ru.connectivitytest.validator.model.ValidationResult;
+import ru.antisida.connectivitytest.site.model.SimpleNode;
+import ru.antisida.connectivitytest.validator.StorageUtil;
+import ru.antisida.connectivitytest.validator.repository.IsolatedWayJdbcRepository;
+import ru.antisida.connectivitytest.validator.model.ValidationResult;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.connectivitytest.validator.repository;
+package ru.antisida.connectivitytest.validator.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.connectivitytest.site.model.SimpleNode;
+import ru.antisida.connectivitytest.site.model.SimpleNode;
 
 import java.util.List;
 
@@ -16,11 +16,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class IsolatedWayJdbcRepository {
 
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedJdbcTemplate;
     private final SimpleJdbcInsert insert;
 
-    public IsolatedWayJdbcRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    public IsolatedWayJdbcRepository(NamedParameterJdbcTemplate namedJdbcTemplate, JdbcTemplate jdbcTemplate) {
+        this.namedJdbcTemplate = namedJdbcTemplate;
         this.insert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("nodes")
                 .usingGeneratedKeyColumns("id");
@@ -38,9 +38,10 @@ public class IsolatedWayJdbcRepository {
         simpleNode.setId(newId.intValue());
     }
 
+    @Transactional
     public void saveAll(List<SimpleNode> simpleNodes) {
         SqlParameterSource[] sqlParameterSources = SqlParameterSourceUtils.createBatch(simpleNodes);
-        namedParameterJdbcTemplate.batchUpdate("INSERT INTO nodes (osm_id, way_osm_id, order_in_way, lat, lon) " +
+        namedJdbcTemplate.batchUpdate("INSERT INTO nodes (osm_id, way_osm_id, order_in_way, lat, lon) " +
                                                "VALUES (:osmId, :wayOsmId, :orderInWay, :lat, :lon) " +
                                                "ON CONFLICT DO NOTHING", sqlParameterSources);
     }

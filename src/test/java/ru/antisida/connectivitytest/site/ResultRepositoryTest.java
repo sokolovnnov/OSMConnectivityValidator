@@ -1,10 +1,8 @@
-package ru.connectivitytest.site;
+package ru.antisida.connectivitytest.site;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-appp.xml",

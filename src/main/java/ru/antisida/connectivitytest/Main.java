@@ -1,13 +1,15 @@
-package ru.connectivitytest;
+package ru.antisida.connectivitytest;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.connectivitytest.validator.*;
-import ru.connectivitytest.validator.model.AdjacencyList;
-import ru.connectivitytest.validator.model.OsmRegion;
-import ru.connectivitytest.validator.model.ValidationResult;
-import ru.connectivitytest.validator.service.NodeService;
-import ru.connectivitytest.validator.service.RegionService;
+import ru.antisida.connectivitytest.validator.StorageUtil;
+import ru.antisida.connectivitytest.validator.Validator;
+import ru.antisida.connectivitytest.validator.model.AdjacencyList;
+import ru.antisida.connectivitytest.validator.model.OsmRegion;
+import ru.antisida.connectivitytest.validator.model.ValidationResult;
+import ru.antisida.connectivitytest.validator.service.NodeService;
+import ru.antisida.connectivitytest.validator.service.RegionService;
+import ru.antisida.connectivitytest.validator.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,10 @@ public class Main {
 
             Map<Integer, OsmRegion> regions = regionService.getAll();
 
-            for (OsmRegion region: regions.values()){
-                AdjacencyList adjacencyList = validator.calculateAdjList(region);
-                StorageUtil.serializeAdjList(adjacencyList);
-            }
+//            for (OsmRegion region: regions.values()){
+//                AdjacencyList adjacencyList = validator.calculateAdjList(region);
+//                StorageUtil.serializeAdjList(adjacencyList);
+//            }
 
           /*  OsmRegion2 region = regions.get(66);
             List<OsmRegion2> neighbors = new ArrayList<>();

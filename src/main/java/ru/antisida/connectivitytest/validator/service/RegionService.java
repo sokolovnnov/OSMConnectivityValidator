@@ -1,8 +1,8 @@
-package ru.connectivitytest.validator.service;
+package ru.antisida.connectivitytest.validator.service;
 
 import org.springframework.stereotype.Service;
-import ru.connectivitytest.validator.model.OsmRegion;
-import ru.connectivitytest.validator.repository.RegionJdbcRepository;
+import ru.antisida.connectivitytest.validator.model.OsmRegion;
+import ru.antisida.connectivitytest.validator.repository.RegionJdbcRepository;
 
 import java.util.List;
 import java.util.Map;

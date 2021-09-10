@@ -1,8 +1,8 @@
-package ru.connectivitytest.validator.model;
+package ru.antisida.connectivitytest.validator.model;
 
 import org.alex73.osmemory.OsmBase;
 import org.alex73.osmemory.OsmWay;
-import ru.connectivitytest.validator.StorageUtil;
+import ru.antisida.connectivitytest.validator.StorageUtil;
 
 import java.io.FileNotFoundException;
 import java.io.Serial;

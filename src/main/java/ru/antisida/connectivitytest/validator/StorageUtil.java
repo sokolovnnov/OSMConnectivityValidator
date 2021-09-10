@@ -1,12 +1,12 @@
-package ru.connectivitytest.validator;
+package ru.antisida.connectivitytest.validator;
 
 import org.alex73.osmemory.IOsmNode;
 import org.alex73.osmemory.MemoryStorage;
 import org.alex73.osmemory.O5MReader;
 import org.alex73.osmemory.OsmWay;
-import ru.connectivitytest.site.model.SimpleNode;
-import ru.connectivitytest.validator.model.AdjacencyList;
-import ru.connectivitytest.validator.model.ValidationResult;
+import ru.antisida.connectivitytest.site.model.SimpleNode;
+import ru.antisida.connectivitytest.validator.model.ValidationResult;
+import ru.antisida.connectivitytest.validator.model.AdjacencyList;
 
 import java.io.*;
 import java.util.ArrayList;

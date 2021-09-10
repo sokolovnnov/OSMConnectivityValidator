@@ -1,4 +1,4 @@
-package ru.connectivitytest.validator.model;
+package ru.antisida.connectivitytest.validator.model;
 
 import java.io.Serializable;
 

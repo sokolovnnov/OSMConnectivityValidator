@@ -1,4 +1,4 @@
-package ru.connectivitytest.site.model;
+package ru.antisida.connectivitytest.site.model;
 
 import java.util.Arrays;
 

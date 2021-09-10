@@ -1,4 +1,4 @@
-package ru.connectivitytest.site;
+package ru.antisida.connectivitytest.site;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,8 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.connectivitytest.site.model.SimpleNode;
-import ru.connectivitytest.site.model.SimpleWay;
+import ru.antisida.connectivitytest.site.model.SimpleNode;
+import ru.antisida.connectivitytest.site.model.SimpleWay;
 
 import java.util.ArrayList;
 import java.util.Collection;

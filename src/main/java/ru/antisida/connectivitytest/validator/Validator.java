@@ -1,13 +1,13 @@
-package ru.connectivitytest.validator;
+package ru.antisida.connectivitytest.validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.connectivitytest.validator.model.AdjacencyList;
-import ru.connectivitytest.validator.model.ConnectedComponent;
-import ru.connectivitytest.validator.model.MarkedNode;
-import ru.connectivitytest.validator.model.OsmRegion;
-import ru.connectivitytest.validator.model.ValidationResult;
+import ru.antisida.connectivitytest.validator.model.AdjacencyList;
+import ru.antisida.connectivitytest.validator.model.ConnectedComponent;
+import ru.antisida.connectivitytest.validator.model.MarkedNode;
+import ru.antisida.connectivitytest.validator.model.OsmRegion;
+import ru.antisida.connectivitytest.validator.model.ValidationResult;
 
 import java.io.IOException;
 import java.util.*;
