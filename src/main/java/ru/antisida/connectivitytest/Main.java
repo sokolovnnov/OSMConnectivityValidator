@@ -2,6 +2,7 @@ package ru.antisida.connectivitytest;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import ru.antisida.connectivitytest.validator.StorageUtil;
 import ru.antisida.connectivitytest.validator.Validator;
 import ru.antisida.connectivitytest.validator.model.AdjacencyList;
@@ -19,8 +20,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext(
-                "spring/spring-appp.xml", "spring/spring-db.xml")) {
+        try (GenericXmlApplicationContext appCtx = new GenericXmlApplicationContext()) {
+
+            appCtx.getEnvironment().setActiveProfiles("heroku");
+            appCtx.load("spring/spring-appp.xml", "spring/spring-db.xml");
+            appCtx.refresh();
 
             NodeService service = appCtx.getBean(NodeService.class);
             Validator validator = appCtx.getBean(Validator.class);

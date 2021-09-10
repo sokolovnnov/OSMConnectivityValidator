@@ -2,26 +2,38 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
-        <jdbc:script location="${jdbc.initLocation}"/>
-   <!--     <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>-->
-    </jdbc:initialize-database>
+<!--    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">-->
+<!--        <jdbc:script location="${jdbc.initLocation}"/>-->
+<!--   &lt;!&ndash;     <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>&ndash;&gt;-->
+<!--    </jdbc:initialize-database>-->
 
     <tx:annotation-driven/>
 
 
+    <beans profile="postgres, heroku">
 
-<!--    <beans profile="postgresjdbc">-->
-        <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+        <context:component-scan base-package="ru.antisida.connectivitytest.**.validator.repository"/>
+        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+            <constructor-arg ref="dataSource"/>
+        </bean>
+
+        <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+            <constructor-arg ref="jdbcTemplate"/>
+        </bean>
 
         <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource"  ref="dataSource" />
         </bean>
+</beans>
+
+
+    <beans profile="postgres">
+        <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
 
         <!--no pooling-->
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -30,15 +42,31 @@
             <property name="username" value="${database.username}"/>
             <property name="password" value="${database.password}"/>
         </bean>
+    </beans>
 
-        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-            <constructor-arg ref="dataSource"/>
-        </bean>
+    <beans profile="heroku">
+        <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
-        <bean id="namedJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-            <constructor-arg ref="jdbcTemplate"/>
+        <bean class="java.net.URI" id="dbUrl">
+            <constructor-arg value="${DATABASE_URL}"/>
         </bean>
-<!--    </beans>-->
+        <bean id="dataSource"
+              class="org.apache.tomcat.jdbc.pool.DataSource"
+              p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
+              p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
+              p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
+              p:driverClassName="org.postgresql.Driver"
+              p:validationQuery="SELECT 1"
+              p:maxActive="10"
+              p:minIdle="2"
+              p:maxWait="20000"
+              p:initialSize="2"
+              p:maxIdle="5"
+              p:testOnBorrow="true"
+              p:removeAbandoned="true"
+              p:testOnConnect="true"
+              p:testWhileIdle="true"/>
+    </beans>
 
     <beans profile="tomcat">
         <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/validator"/>

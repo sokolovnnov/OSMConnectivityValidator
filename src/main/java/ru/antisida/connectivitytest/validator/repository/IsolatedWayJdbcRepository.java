@@ -16,11 +16,13 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class IsolatedWayJdbcRepository {
 
-    private final NamedParameterJdbcTemplate namedJdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final SimpleJdbcInsert insert;
 
-    public IsolatedWayJdbcRepository(NamedParameterJdbcTemplate namedJdbcTemplate, JdbcTemplate jdbcTemplate) {
-        this.namedJdbcTemplate = namedJdbcTemplate;
+    public IsolatedWayJdbcRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.insert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("nodes")
                 .usingGeneratedKeyColumns("id");
@@ -41,7 +43,7 @@ public class IsolatedWayJdbcRepository {
     @Transactional
     public void saveAll(List<SimpleNode> simpleNodes) {
         SqlParameterSource[] sqlParameterSources = SqlParameterSourceUtils.createBatch(simpleNodes);
-        namedJdbcTemplate.batchUpdate("INSERT INTO nodes (osm_id, way_osm_id, order_in_way, lat, lon) " +
+        namedParameterJdbcTemplate.batchUpdate("INSERT INTO nodes (osm_id, way_osm_id, order_in_way, lat, lon) " +
                                                "VALUES (:osmId, :wayOsmId, :orderInWay, :lat, :lon) " +
                                                "ON CONFLICT DO NOTHING", sqlParameterSources);
     }
