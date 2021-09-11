@@ -17,16 +17,8 @@ public class RegionService {
         this.repository = repository;
     }
 
-    public OsmRegion get(int id){
-        return repository.get(id);
-    }
-
     public Map<Integer, OsmRegion> getAll(){
         List<OsmRegion> regionList = repository.getAll();
         return regionList.stream().collect(Collectors.toMap(region -> region.getId(), region -> region));
-    }
-
-    public List<Integer> getAllId(){
-        return repository.getAllId();
     }
 }

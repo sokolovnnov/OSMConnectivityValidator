@@ -29,6 +29,7 @@ public class RegionJdbcRepository {
             region.setId(rs.getInt("id"));
             region.setName(rs.getString("name"));
             region.setPath(rs.getString("path"));
+            region.setRussian(rs.getInt("id") < 100);
             Array arr = rs.getArray("neighbors");
             System.out.println(arr);
             Integer[] a = (Integer[]) arr.getArray();
@@ -41,10 +42,6 @@ public class RegionJdbcRepository {
         List<OsmRegion> regions = jdbcTemplate.query(
                 "SELECT * FROM regions WHERE id = ?", rowMapper, id);
         return DataAccessUtils.singleResult(regions);
-    }
-
-    public List<Integer> getAllId() {
-        return jdbcTemplate.queryForList("SELECT (id) FROM regions", Integer.class);
     }
 
     public List<OsmRegion> getAll() {

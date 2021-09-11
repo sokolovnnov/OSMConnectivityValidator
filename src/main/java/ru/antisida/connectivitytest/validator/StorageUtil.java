@@ -82,7 +82,6 @@ public class StorageUtil {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
         objectOutputStream.writeObject(adjacencyList);
         objectOutputStream.close();
-        System.out.println("========================================serializeAdjList: " + adjacencyList.getRegionName());
     }
 
     public static AdjacencyList deSerializeAdjList(String path) throws IOException, ClassNotFoundException{
@@ -91,7 +90,6 @@ public class StorageUtil {
         ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
         AdjacencyList adjacencyList = (AdjacencyList) objectInputStream.readObject();
         objectInputStream.close();
-        System.out.println("_____________________________________deSerializeAdjList: " + path);
         return adjacencyList;
     }
 }

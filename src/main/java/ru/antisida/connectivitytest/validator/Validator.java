@@ -20,43 +20,29 @@ public class Validator {
 
     private final Set<Integer> notFoundRegion = new HashSet<>();
 
-    public AdjacencyList calculateAdjList(OsmRegion region) {
-        AdjacencyList adjacencyList = null;
-        try {
-            adjacencyList = region.calculateAdjList();
-        } catch (IOException e) {//fixme
-            notFoundRegion.add(region.getId());
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return adjacencyList;
-    }
-
     public ValidationResult connectivityValidate(OsmRegion region, List<OsmRegion> neighbors) throws IOException {
-
         for (OsmRegion neighbor : neighbors) {
             connectivityTwoRegion(region, neighbor);
-            neighbor.setAdjacencyList(new AdjacencyList());
+            neighbor.setEmptyAdjacencyList();
         }
 
         ValidationResult validationResult =
                 new ValidationResult(region.getId(), region.getPath(), region.getIsolatedWaysFromO5M());
-        region.setAdjacencyList(new AdjacencyList());
+        region.setEmptyAdjacencyList();
         return validationResult;
     }
 
-    private void connectivityTwoRegion(OsmRegion one, OsmRegion two) {
+    private void connectivityTwoRegion(OsmRegion region, OsmRegion neighbor) {
 
-        if (two == null || one.getAdjacencyList() == null || two.getAdjacencyList() == null) return;
+        log.info("{}: with neighbor {}", region.getName(), neighbor.getName());
 
-        System.out.println("One = " + one.getName() + ", Two = " + two.getName());
+        if (region.getAdjacencyList() == null || neighbor.getAdjacencyList() == null) return;
 
-        AdjacencyList adjacencyListOne = one.getAdjacencyList();
-        AdjacencyList adjacencyListTwo = two.getAdjacencyList();
+        AdjacencyList adjacencyListOne = region.getAdjacencyList();
+        AdjacencyList adjacencyListTwo = neighbor.getAdjacencyList();
 
-        //1. сет id всех изолированных компонентов региона one
-        Set<Integer> isolatedComponentIds_One = one.getAdjacencyList().getIsolatedComponentIds();
+        //1. сет id всех изолированных компонентов региона region
+        Set<Integer> isolatedComponentIds_One = region.getAdjacencyList().getIsolatedComponentIds();
 
         //2.сет id измененных компонентов
         Set<Integer> conComNotIsolatedIds = adjacencyListOne.getInnerAjList().values()
