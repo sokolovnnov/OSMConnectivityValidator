@@ -1,12 +1,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-
-    <import resource="spring-cache.xml"/>
-
-    <context:component-scan base-package="ru.antisida.connectivitytest.**.repository"/>
-    <context:component-scan base-package="ru.antisida.connectivitytest.**.service"/>
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"
+>
+    <context:component-scan base-package="ru.antisida.connectivitytest.**.validator.repository"/>
+    <context:component-scan base-package="ru.antisida.connectivitytest.**.validator.service"/>
     <context:component-scan base-package="ru.antisida.connectivitytest.**.validator"/>
-    <context:component-scan base-package="ru.antisida.connectivitytest.**.site"/>
 </beans>

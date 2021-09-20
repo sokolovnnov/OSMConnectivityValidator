@@ -97,7 +97,7 @@ VALUES (52, 'NN', '{12, 13, 21, 33, 37, 43, 44, 62}', 'RU-NIZ.o5m'),
        (201, 'FIN-MUR', '{0}', 'finland-latestMUR.o5m'),
        (202, 'FIN', '{0}', 'finland-latest.o5m'),
 
-       (300, 'EST', '{0}', 'estonia-latest.o5m'),
+       (300, 'EST', '{47, 60, 400}', 'estonia-latest.o5m'),
        (400, 'LAT', '{0}', 'latvia-latest.o5m'),
 
        (501, 'BY-VI', '{0}', 'BY-VI.o5m'),

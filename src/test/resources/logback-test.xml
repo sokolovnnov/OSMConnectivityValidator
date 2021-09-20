@@ -22,10 +22,10 @@
     </logger>
 
     <!--    <logger name="org.postgresql" level="debug"/>-->
-        <logger name="org.springframework.jdbc" level="trace"/>
-    <logger name="ru.connectivitytest.site" level="trace"/>
+    <logger name="org.springframework.jdbc" level="INFO"/>
+<!--    <logger name="ru.antisida.connectivitytest.site" level="trace"/>-->
 
-    <root level="TRACE">
+    <root level="info">
         <appender-ref ref="console"/>
     </root>
 

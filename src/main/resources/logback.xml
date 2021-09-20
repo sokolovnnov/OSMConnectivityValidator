@@ -4,14 +4,14 @@
     <!-- To enable JMX Management -->
     <jmxConfigurator/>
 
-    <appender name="file" class="ch.qos.logback.core.FileAppender">
-<!--        <file>${TOPJAVA_ROOT}/log/topjava.log</file>-->
+    <!-- <appender name="file" class="ch.qos.logback.core.FileAppender">
+         &lt;!&ndash;        <file>${TOPJAVA_ROOT}/log/topjava.log</file>&ndash;&gt;
 
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%date %-5level %logger{50}.%M:%L - %msg%n</pattern>
-        </encoder>
-    </appender>
+         <encoder>
+             <charset>UTF-8</charset>
+             <pattern>%date %-5level %logger{50}.%M:%L - %msg%n</pattern>
+         </encoder>
+     </appender>-->
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -20,24 +20,40 @@
         </encoder>
     </appender>
 
-<!--
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%msg%n</pattern>
-        </encoder>
-    </appender>
--->
+    <!--
+        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%msg%n</pattern>
+            </encoder>
+        </appender>
+    -->
 
-    <logger name="org.springframework.cache" level="trace">
-       <!-- <appender-ref ref="console" />-->
-    </logger>
 
-    <logger name="ru.connectivitytest" level="debug"/>
+<!--    <logger name="org.springframework.cache" level="trace">-->
+<!--        <appender-ref ref="console"/>-->
+<!--    </logger>-->
+
+    <logger name="org.springframework.jdbc" level="debug"/>
+    <logger name="ru.antisida.connectivitytest.validator" level="info"/>
+
+    <!-- <logger name="ru.antisida.connectivitytest.site" level="trace">
+         <appender-ref ref="console"/>
+     </logger>-->
+   <!-- <logger name="org.springframework.cache.jcache.JCacheCacheManager" level="trace">
+        <appender-ref ref="console"/>
+    </logger>-->
+   <!-- <logger name="org.ehcache.core.EhcacheManager" level="trace">
+        <appender-ref ref="console"/>
+    </logger>-->
+
+
+
 <!--    <logger name="org.springframework.web.servlet" level="debug"/>-->
-    <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="debug"/>
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"
+            level="debug"/>
 
-    <root level="info">
-<!--        <appender-ref ref="file"/>-->
+    <root level="debug">
+        <!--        <appender-ref ref="file"/>-->
         <appender-ref ref="console"/>
     </root>
 </configuration>

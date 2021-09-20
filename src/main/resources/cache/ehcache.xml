@@ -6,11 +6,20 @@
     <!--http://www.ehcache.org/documentation/3.8/107.html#supplement-jsr-107-configurations-->
 
     <cache-template name="singleNonExpiryCache">
-        <expiry>
+        <expiry >
             <ttl unit="minutes">600</ttl>
         </expiry>
-        <heap>500000</heap>
+        <heap>5000000</heap>
     </cache-template>
 
-    <cache alias="ways" uses-template="singleNonExpiryCache"/>
+    <cache alias="SimpleWayCache" uses-template="singleNonExpiryCache"/>
+
+    <cache-template name="singleNonExpiryCache1">
+        <expiry >
+            <ttl unit="minutes">600</ttl>
+        </expiry>
+        <heap>5000000</heap>
+    </cache-template>
+
+    <cache alias="jsonSimpleWays" uses-template="singleNonExpiryCache1"/>
 </config>

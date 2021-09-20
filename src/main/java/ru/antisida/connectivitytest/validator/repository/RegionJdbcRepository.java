@@ -29,7 +29,7 @@ public class RegionJdbcRepository {
             region.setId(rs.getInt("id"));
             region.setName(rs.getString("name"));
             region.setPath(rs.getString("path"));
-            region.setRussian(rs.getInt("id") < 100);
+            region.setRussian(rs.getInt("id") < 100/* || rs.getInt("id") == 300*/);
             Array arr = rs.getArray("neighbors");
             System.out.println(arr);
             Integer[] a = (Integer[]) arr.getArray();
