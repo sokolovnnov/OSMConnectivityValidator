@@ -11,6 +11,7 @@ CREATE TABLE nodes
     id           INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     osm_id       BIGINT,
     way_osm_id   INTEGER,
+    region_id    INTEGER,
     order_in_way INTEGER,
     lat          float4 NOT NULL,
     lon          float4 NOT NULL
