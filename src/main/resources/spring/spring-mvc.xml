@@ -11,7 +11,7 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="ru.antisida.connectivitytest.**.site.web"/>
+    <context:component-scan base-package="com.github.sokolovnnov.connectivitytest.**.site.web"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"

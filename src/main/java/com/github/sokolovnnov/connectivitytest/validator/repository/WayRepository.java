@@ -1,6 +1,6 @@
 package com.github.sokolovnnov.connectivitytest.validator.repository;
 
-import com.github.sokolovnnov.connectivitytest.site.model.SimpleNode;
+import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 
 import java.util.List;
 

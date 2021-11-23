@@ -1,13 +1,13 @@
 package com.github.sokolovnnov.connectivitytest.validator;
 
 import com.github.sokolovnnov.connectivitytest.validator.model.AdjacencyList;
+import com.github.sokolovnnov.validatorsite.model.SimpleNode;
+import com.github.sokolovnnov.validatorsite.repo.inmemory.IsolatedNodes;
 import org.alex73.osmemory.IOsmNode;
 import org.alex73.osmemory.MemoryStorage;
 import org.alex73.osmemory.O5MReader;
 import org.alex73.osmemory.OsmWay;
-import com.github.sokolovnnov.connectivitytest.site.model.SimpleNode;
 import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
-import com.github.sokolovnnov.connectivitytest.validator.repository.inMemory.IsolatedNodes;
 
 import java.io.*;
 import java.util.ArrayList;

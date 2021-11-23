@@ -1,6 +1,7 @@
 package com.github.sokolovnnov.connectivitytest.site.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 
 import java.util.Arrays;
 

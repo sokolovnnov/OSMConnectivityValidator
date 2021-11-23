@@ -191,6 +191,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.sokolovnnov</groupId>
+            <artifactId>ValidatorSite</artifactId>
+            <version>13cd9e1a51</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>

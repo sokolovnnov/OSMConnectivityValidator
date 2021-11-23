@@ -23,9 +23,9 @@ public class OsmRegion {
 
     public void calculateAdjList() throws IOException {
         log.info("{}: creating adjacencyList for region...", name);
-        AdjacencyList adjacencyList = AdjacencyList.newBuilder().readFromO5M(this.path).markAdjacentComponents().build();
+        this.adjacencyList = AdjacencyList.newBuilder().readFromO5M(this.path).markAdjacentComponents().build();
         log.info("{}: number of connected components is {}", this.name, adjacencyList.getConnectedComponents().size());
-        this.adjacencyList = adjacencyList;
+//        this.adjacencyList = adjacencyList;
     }
 
     public Set<OsmWay> getIsolatedWaysFromO5M() throws FileNotFoundException {
@@ -38,14 +38,15 @@ public class OsmRegion {
         return adjacencyList;
     }
 
-    public void setEmptyAdjacencyList(){
+    public void clearAdjacencyList(){
+//        this.adjacencyList = null;
         this.adjacencyList = AdjacencyList.newBuilder().setAdjacencyListToNull().build();
     }
 
     public void serializeAdjList() throws IOException {
         StorageUtil.serializeAdjList(this.adjacencyList);
         log.info("{}: serialize...", this.name);
-        setEmptyAdjacencyList();
+        clearAdjacencyList();
     }
 
     public void deSerializeAdjList() throws IOException, ClassNotFoundException {

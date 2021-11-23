@@ -18,32 +18,34 @@ public class AdjacencyList implements Serializable {
 
     private String regionName;
     private ArrayList<ConnectedComponent> connectedComponents = new ArrayList<>();
-    private HashMap<Long, MarkedNode> innerAjList;
+    private HashMap<Long, MarkedNode> innerAdjList;
 
-    private AdjacencyList(){}
+    private AdjacencyList() {
+    }
 
     public static Builder newBuilder() {
         return new AdjacencyList().new Builder();
     }
 
-    public class Builder{
-        private Builder(){}
+    public class Builder {
+        private Builder() {
+        }
 
         public Builder readFromO5M(String path) throws FileNotFoundException {
             AdjacencyList.this.regionName = path.substring(0, path.length() - 4);
             List<OsmWay> osmWays = StorageUtil.readFromOM5toWays(path);
-            AdjacencyList.this.innerAjList = createAdjacencyListForWays(osmWays);
+            AdjacencyList.this.innerAdjList = createAdjacencyListForWays(osmWays);
             return this;
         }
 
-        public Builder markAdjacentComponents(){
+        public Builder markAdjacentComponents() {
             int connectedComponentId = 1;
 
             // пока не останется ни одной не посещенной ноды
-            while (AdjacencyList.this.innerAjList.values().stream().anyMatch(n -> !n.isVisited())) {
+            while (AdjacencyList.this.innerAdjList.values().stream().anyMatch(n -> !n.isVisited())) {
 
                 // find first node !isVisited()
-                MarkedNode markedNode = AdjacencyList.this.innerAjList.values()
+                MarkedNode markedNode = AdjacencyList.this.innerAdjList.values()
                         .stream()
                         .filter(n -> !n.isVisited())
                         .findFirst()
@@ -57,39 +59,38 @@ public class AdjacencyList implements Serializable {
                 // стек непосещенных нод
                 Stack<Long> notVisitedNodes = new Stack<>();
                 for (long nodeId : markedNode.neighborNodeIds) {
-                    if (AdjacencyList.this.innerAjList.get(nodeId).isVisited() == false) { //fixme долгая операция
+                    if (AdjacencyList.this.innerAdjList.get(nodeId).isVisited() == false) { //fixme долгая операция
                         notVisitedNodes.push(nodeId);
                     }
                 }
 
                 while (notVisitedNodes.empty() == false) {
-                    MarkedNode nodeFromStack = innerAjList.get(notVisitedNodes.pop());
+                    MarkedNode nodeFromStack = innerAdjList.get(notVisitedNodes.pop());
                     nodeFromStack.setVisited(true);
                     nodeFromStack.setConnectedComponentId(connectedComponentId);
                     connectedComponentSize++;
                     for (long neighbour : nodeFromStack.neighborNodeIds) {
-                        if (AdjacencyList.this.innerAjList.get(neighbour).isVisited() == false) {
+                        if (AdjacencyList.this.innerAdjList.get(neighbour).isVisited() == false) {
                             notVisitedNodes.push(neighbour);
                         }
                     }
                 }
 
-                addConnectedComponent(new ConnectedComponent(connectedComponentId,
-                        connectedComponentSize));
+                addConnectedComponent(new ConnectedComponent(connectedComponentId, connectedComponentSize));
 
                 connectedComponentId++;
             }
             return this;
         }
 
-        public Builder setAdjacencyListToNull(){
-            AdjacencyList.this.innerAjList = null;
+        public Builder setAdjacencyListToNull() {
+            AdjacencyList.this.innerAdjList = null;
             AdjacencyList.this.connectedComponents = null;
             AdjacencyList.this.regionName = null;
             return this;
         }
 
-        public AdjacencyList build(){
+        public AdjacencyList build() {
             return AdjacencyList.this;
         }
 
@@ -114,7 +115,7 @@ public class AdjacencyList implements Serializable {
                 }
             }
 
-        //    System.out.println("Количество узлов в списке связности: " + commonAdjMap.size());
+            //    System.out.println("Количество узлов в списке связности: " + commonAdjMap.size());
             return commonAdjMap;
         }
 
@@ -192,7 +193,7 @@ public class AdjacencyList implements Serializable {
         Set<Integer> isolatedComponentIds = getIsolatedComponentIds();
 
         //get osmIds of isolated way
-        Set<Long> isolatedWayIds = getInnerAjList()
+        Set<Long> isolatedWayIds = getInnerAdjList()
                 .values()
                 .stream()
                 .filter(markedNode -> isolatedComponentIds.contains(markedNode.getConnectedComponentId()))
@@ -256,10 +257,6 @@ public class AdjacencyList implements Serializable {
         System.out.println("Количество ConnectedComponent: " + this.getConnectedComponents().size());
     }*/
 
-
-
-
-
     public ArrayList<ConnectedComponent> getConnectedComponents() {
         return connectedComponents;
     }
@@ -271,9 +268,19 @@ public class AdjacencyList implements Serializable {
                 .collect(Collectors.toSet());
     }
 
-    public HashMap<Long, MarkedNode> getInnerAjList() {
-        return innerAjList;
+    public HashMap<Long, MarkedNode> getInnerAdjList() {
+        return innerAdjList;
     }
+
+    public Collection<MarkedNode> getAllMarkedNodes() {
+        return innerAdjList.values();
+    }
+
+    public boolean containsMarkedNode(long id){
+        return innerAdjList.containsKey(id);
+    }
+
+    public MarkedNode getMarkedNode(long id) { return innerAdjList.get(id); }
 
     public String getRegionName() {
         return regionName;

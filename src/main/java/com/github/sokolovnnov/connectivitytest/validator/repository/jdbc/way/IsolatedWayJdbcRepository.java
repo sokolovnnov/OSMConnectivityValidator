@@ -1,6 +1,7 @@
 package com.github.sokolovnnov.connectivitytest.validator.repository.jdbc.way;
 
 import com.github.sokolovnnov.connectivitytest.validator.repository.WayRepository;
+import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -9,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.github.sokolovnnov.connectivitytest.site.model.SimpleNode;
 
 import java.util.List;
 

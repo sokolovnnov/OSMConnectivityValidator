@@ -1,7 +1,8 @@
 package com.github.sokolovnnov.connectivitytest.validator.repository.inMemory;
 
+import com.github.sokolovnnov.validatorsite.model.SimpleNode;
+import com.github.sokolovnnov.validatorsite.repo.inmemory.IsolatedNodes;
 import org.springframework.stereotype.Repository;
-import com.github.sokolovnnov.connectivitytest.site.model.SimpleNode;
 import com.github.sokolovnnov.connectivitytest.validator.repository.WayRepository;
 
 import java.util.List;
