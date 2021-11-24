@@ -19,7 +19,8 @@ public class Main {
 
         try (GenericXmlApplicationContext appCtx = new GenericXmlApplicationContext()) {
 
-            appCtx.getEnvironment().setActiveProfiles("heroku");
+            appCtx.getEnvironment().setActiveProfiles("H2");
+//            appCtx.getEnvironment().setActiveProfiles("heroku");
 //            appCtx.getEnvironment().setActiveProfiles("postgres");
             appCtx.load("spring/spring-appp.xml", "spring/spring-db.xml");
             appCtx.refresh();
@@ -28,12 +29,23 @@ public class Main {
             NeighborsConnectivityValidator neighborsConnectivityValidator = appCtx.getBean(NeighborsConnectivityValidator.class);
             RegionService regionService = appCtx.getBean(RegionService.class);
 
-            Map<Integer, OsmRegion> regions = regionService.getAll();
-            Map<Integer, OsmRegion> regionsForValidate = regionService.getAll();
+            List<OsmRegion> regions = regionService.getAll();
+
+//            int size = regions.size();
+//            if (size > 20) {
+//                regions.subList(0, size - 20).clear();
+//            }
+
+            List<ValidationResult> results = neighborsConnectivityValidator.validate(regions);
+            for (ValidationResult result: results){
+                nodeResultService.save(result);
+            }
+            StorageUtil.serializeInMemoryRepository(IsolatedWayInMemoryRepository.getIsolatedNodes());
+            /*Map<Integer, OsmRegion> regionsForValidate = regionService.getAll();
             for (OsmRegion region : regions.values()) {
                 region.calculateAdjList();
                 region.serializeAdjList();
-            }
+            }*/
 
 
 //            OsmRegion estonia = regions.get(300);
@@ -103,11 +115,11 @@ public class Main {
 
 
 
-            for (OsmRegion region : regionsForValidate.values()) {
+           /* for (OsmRegion region : regionsForValidate.values()) {
                 if (region.isRussian()) {
                     region.deSerializeAdjList();
                     List<OsmRegion> neighbors2 = new ArrayList<>();
-                    for (Integer neighborsId : region.getNeighbors()) {
+                    for (Integer neighborsId : region.getNeighborIds()) {
                         OsmRegion neighbor = regions.get(neighborsId);
                         if (neighbor != null) {
                             neighbor.deSerializeAdjList();
@@ -118,7 +130,7 @@ public class Main {
                     nodeResultService.save(result2);
                 }
             }
-            StorageUtil.serializeInMemoryRepository(IsolatedWayInMemoryRepository.getIsolatedNodes());
+            StorageUtil.serializeInMemoryRepository(IsolatedWayInMemoryRepository.getIsolatedNodes());*/
         }
     }
 }

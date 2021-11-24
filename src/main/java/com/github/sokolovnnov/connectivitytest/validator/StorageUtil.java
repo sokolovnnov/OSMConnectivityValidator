@@ -3,15 +3,13 @@ package com.github.sokolovnnov.connectivitytest.validator;
 import com.github.sokolovnnov.connectivitytest.validator.model.AdjacencyList;
 import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 import com.github.sokolovnnov.validatorsite.repo.inmemory.IsolatedNodes;
-import org.alex73.osmemory.IOsmNode;
-import org.alex73.osmemory.MemoryStorage;
-import org.alex73.osmemory.O5MReader;
-import org.alex73.osmemory.OsmWay;
+import org.alex73.osmemory.*;
 import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class StorageUtil {
 
@@ -62,6 +60,30 @@ public class StorageUtil {
         return osmWays;
     }
 
+    public static Set<OsmWay> getIsolatedWays(AdjacencyList adjacencyList) throws FileNotFoundException {
+        ArrayList<OsmWay> allOsmWays = StorageUtil.readFromOM5toWays(adjacencyList.getRegionName());
+        Map<Long, OsmWay> allOsmWaysMap = allOsmWays.stream().collect(Collectors.toMap(OsmBase::getId, osmWay -> osmWay,
+                (osmWay1, osmWay2) -> osmWay1));
+
+        Set<Integer> isolatedComponentIds = adjacencyList.getIsolatedComponentIds();
+
+        //get osmIds of isolated way
+        Set<Long> isolatedWayIds = adjacencyList.getInnerAdjList()
+                .values()
+                .stream()
+                .filter(markedNode -> isolatedComponentIds.contains(markedNode.getConnectedComponentId()))
+                .map(markedNode -> markedNode.getWayIds())
+                .flatMapToLong(l -> LongStream.of(l))
+                .boxed()
+                .collect(Collectors.toSet());
+
+        Set<OsmWay> isolatedWays = new HashSet<>();
+        for (Long isolatedWayId : isolatedWayIds) {
+            isolatedWays.add(allOsmWaysMap.get(isolatedWayId));
+        }
+        return isolatedWays;
+    }
+
     public static List<SimpleNode> getIsolatedSimpleNodesByWays(ValidationResult result) throws Exception {
         MemoryStorage memoryStorage = new O5MReader().read(new File(PATH + result.getPath()));
 
@@ -79,7 +101,9 @@ public class StorageUtil {
     }
 
     public static void serializeAdjList(AdjacencyList adjacencyList) throws IOException {
-        FileOutputStream outputStream = new FileOutputStream(SERIALIZE_PATH + adjacencyList.getRegionName());
+        String fileName = adjacencyList.getRegionName();
+        FileOutputStream outputStream =
+                new FileOutputStream(SERIALIZE_PATH + fileName.substring(0, fileName.length() - 4));
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
         objectOutputStream.writeObject(adjacencyList);

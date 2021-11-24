@@ -31,9 +31,13 @@ public class RegionJdbcRepository {
             region.setPath(rs.getString("path"));
             region.setRussian(rs.getInt("id") < 100/* || rs.getInt("id") == 300*/);
             Array arr = rs.getArray("neighbors");
-            System.out.println(arr);
-            Integer[] a = (Integer[]) arr.getArray();
-            region.setNeighbors(a);
+            Object[] neighborObjectIds = (Object[]) arr.getArray();
+            int size = neighborObjectIds.length;
+            Integer[] neighborIds = new Integer[size];
+            for (int k = 0; k < size; k++){
+                neighborIds[k] = (Integer) neighborObjectIds[k];
+            }
+            region.setNeighborIds(neighborIds);
             return region;
         }
     };

@@ -15,20 +15,21 @@ public class OsmRegion {
     private String name;
     private int id;
     private boolean isRussian;
-    private Integer[] neighbors;
+    private Integer[] neighborIds;
+    private List<OsmRegion> neighbors;
     private String path;
-    private AdjacencyList adjacencyList;
+//    private AdjacencyList adjacencyList;
 
     public OsmRegion() {}
 
-    public void calculateAdjList() throws IOException {
+   /* public void calculateAdjList() throws IOException {
         log.info("{}: creating adjacencyList for region...", name);
         this.adjacencyList = AdjacencyList.newBuilder().readFromO5M(this.path).markAdjacentComponents().build();
         log.info("{}: number of connected components is {}", this.name, adjacencyList.getConnectedComponents().size());
 //        this.adjacencyList = adjacencyList;
-    }
+    }*/
 
-    public Set<OsmWay> getIsolatedWaysFromO5M() throws FileNotFoundException {
+   /* public Set<OsmWay> getIsolatedWaysFromO5M() throws FileNotFoundException {
         Set<OsmWay> osmWays = adjacencyList.getIsolatedWaysFromO5M(this.path);
         log.info("{}: number of isolated ways is {}", this.name, osmWays.size());
         return osmWays;
@@ -52,7 +53,7 @@ public class OsmRegion {
     public void deSerializeAdjList() throws IOException, ClassNotFoundException {
         log.info("{}: deserialize...", this.name);
         this.adjacencyList = StorageUtil.deSerializeAdjList(this.path);
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -78,11 +79,19 @@ public class OsmRegion {
         isRussian = russian;
     }
 
-    public Integer[] getNeighbors() {
+    public Integer[] getNeighborIds() {
+        return neighborIds;
+    }
+
+    public void setNeighborIds(Integer[] neighborIds) {
+        this.neighborIds = neighborIds;
+    }
+
+    public List<OsmRegion> getNeighbors() {
         return neighbors;
     }
 
-    public void setNeighbors(Integer[] neighbors) {
+    public void setNeighbors(List<OsmRegion> neighbors) {
         this.neighbors = neighbors;
     }
 

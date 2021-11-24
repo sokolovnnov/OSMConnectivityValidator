@@ -26,6 +26,8 @@ public class MarkedNode implements Serializable {
         this.id = id;
     }
 
+    public long[] getWayIds(){ return  wayIds; }
+
     public boolean isVisited() {
         return visited;
     }
