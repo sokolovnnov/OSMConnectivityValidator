@@ -17,7 +17,7 @@ public class StorageUtil {
     private static final String PATH = "d:\\osmtmp\\";
     private static final float DIVIDER = 0.0000001F;
 
-    public static ArrayList<OsmWay> readFromOM5toWays(String path) throws FileNotFoundException {
+    public static ArrayList<OsmWay> readWays(String path) throws FileNotFoundException {
         MemoryStorage memoryStorage;
         try {
             memoryStorage = new O5MReader().read(new File(PATH + path));
@@ -60,8 +60,8 @@ public class StorageUtil {
         return osmWays;
     }
 
-    public static Set<OsmWay> getIsolatedWays(AdjacencyList adjacencyList) throws FileNotFoundException {
-        ArrayList<OsmWay> allOsmWays = StorageUtil.readFromOM5toWays(adjacencyList.getRegionName());
+    public static Set<OsmWay> readIsolatedWays(AdjacencyList adjacencyList) throws FileNotFoundException {
+        ArrayList<OsmWay> allOsmWays = StorageUtil.readWays(adjacencyList.getRegionName());
         Map<Long, OsmWay> allOsmWaysMap = allOsmWays.stream().collect(Collectors.toMap(OsmBase::getId, osmWay -> osmWay,
                 (osmWay1, osmWay2) -> osmWay1));
 
@@ -84,7 +84,7 @@ public class StorageUtil {
         return isolatedWays;
     }
 
-    public static List<SimpleNode> getIsolatedSimpleNodesByWays(ValidationResult result) throws Exception {
+    public static List<SimpleNode> readIsolatedSimpleNodes(ValidationResult result) throws Exception {
         MemoryStorage memoryStorage = new O5MReader().read(new File(PATH + result.getPath()));
 
         List<SimpleNode> nodes = new ArrayList<>();
@@ -110,7 +110,7 @@ public class StorageUtil {
         objectOutputStream.close();
     }
 
-    public static AdjacencyList deSerializeAdjList(String path) throws IOException, ClassNotFoundException{
+    public static AdjacencyList deSerializeAdjList(String path) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(SERIALIZE_PATH + path.substring(0, path.length() - 4));
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
         ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
@@ -119,7 +119,7 @@ public class StorageUtil {
         return adjacencyList;
     }
 
-    public static void serializeInMemoryRepository(IsolatedNodes isolatedNodes) throws IOException{
+    public static void serializeInMemoryRepository(IsolatedNodes isolatedNodes) throws IOException {
         FileOutputStream outputStream = new FileOutputStream(SERIALIZE_PATH + "repository");
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);

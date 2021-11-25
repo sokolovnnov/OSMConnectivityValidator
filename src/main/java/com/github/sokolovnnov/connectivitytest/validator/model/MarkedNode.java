@@ -7,10 +7,10 @@ import java.util.Objects;
 public class MarkedNode implements Serializable {
 
     private long id;
-    long[] wayIds; //веи в которые входит точка
+    protected long[] wayIds; //веи в которые входит точка
     private boolean visited;
     private int connectedComponentId;
-    long[] neighborNodeIds; // соседние точки
+    protected long[] neighborNodeIds; // id соседних точек
 
     public MarkedNode(long id, long wayId, long[] neighborNodeIds) {
         this.id = id;

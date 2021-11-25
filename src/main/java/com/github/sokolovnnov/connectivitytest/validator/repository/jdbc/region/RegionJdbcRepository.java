@@ -43,8 +43,7 @@ public class RegionJdbcRepository {
     };
 
     public OsmRegion get(int id) {
-        List<OsmRegion> regions = jdbcTemplate.query(
-                "SELECT * FROM regions WHERE id = ?", rowMapper, id);
+        List<OsmRegion> regions = jdbcTemplate.query("SELECT * FROM regions WHERE id = ?", rowMapper, id);
         return DataAccessUtils.singleResult(regions);
     }
 

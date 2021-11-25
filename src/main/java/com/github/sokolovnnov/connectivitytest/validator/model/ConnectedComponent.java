@@ -26,12 +26,4 @@ public class ConnectedComponent implements Serializable {
         this.isolated = isolated;
     }
 
-    @Override
-    public String toString() {
-        return "ConnectedComponent{" +
-               "id=" + id +
-               ", size=" + size +
-               ", isolated=" + isolated +
-               '}';
-    }
 }

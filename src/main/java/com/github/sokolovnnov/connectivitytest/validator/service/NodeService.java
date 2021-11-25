@@ -18,7 +18,7 @@ public class NodeService {
     }
 
     public void save(ValidationResult result) throws Exception {
-        List<SimpleNode> nodes = StorageUtil.getIsolatedSimpleNodesByWays(result);
+        List<SimpleNode> nodes = StorageUtil.readIsolatedSimpleNodes(result);
         repository.saveAll(nodes);
     }
 }

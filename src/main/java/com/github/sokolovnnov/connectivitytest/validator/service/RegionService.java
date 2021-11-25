@@ -33,7 +33,6 @@ public class RegionService {
             for (Integer neighborId: region.getNeighborIds()) {
                 neighbors.add(regions.get(neighborId));
             }
-
             region.setNeighbors(neighbors);
         }
         regionsList.removeIf(Objects::isNull);

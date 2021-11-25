@@ -10,29 +10,31 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class NeighborsConnectivityValidator {
+public class ConnectivityValidator {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     private final Set<Integer> notFoundRegion = new HashSet<>();
 
     public List<ValidationResult> validate(List<OsmRegion> regions) throws IOException, ClassNotFoundException {
-//        for (OsmRegion region: regions) {
-//            prepare(region);
-//        }
+
+        for (OsmRegion region: regions) {
+            prepare(region);
+        }
+
         List<ValidationResult> results = new ArrayList<>();
         for (OsmRegion region: regions) {
             if(region.getNeighbors() == null) continue;
             if(!region.isRussian()) continue;
-            ValidationResult result = validateOne(region);
+            ValidationResult result = validateWithAllNeighbors(region);
             results.add(result);
         }
+
         return results;
     }
 
@@ -45,7 +47,7 @@ public class NeighborsConnectivityValidator {
     }
 
     //fixme Exception
-    private ValidationResult validateOne(OsmRegion region) throws IOException, ClassNotFoundException {
+    private ValidationResult validateWithAllNeighbors(OsmRegion region) throws IOException, ClassNotFoundException {
         AdjacencyList adjacencyRegionList = StorageUtil.deSerializeAdjList(region.getPath());
 
         System.out.println(region.getName() + " - соседей: " + region.getNeighbors().size());
@@ -57,29 +59,15 @@ public class NeighborsConnectivityValidator {
         for (OsmRegion neighbor: region.getNeighbors()){
             if (neighbor == null) continue;
             AdjacencyList adjacencyNeighborList = StorageUtil.deSerializeAdjList(neighbor.getPath());
-            oneNeighborValidate(adjacencyRegionList, adjacencyNeighborList);
+            validateTwoAdjList(adjacencyRegionList, adjacencyNeighborList);
         }
-        ValidationResult validationResult =
-                new ValidationResult(region.getId(), region.getPath(), StorageUtil.getIsolatedWays(adjacencyRegionList));
-        return validationResult;
+
+        return new ValidationResult(region.getId(), region.getPath(), StorageUtil.readIsolatedWays(adjacencyRegionList));
     }
 
-   /* public ValidationResult allNeighborsValidate(OsmRegion region, List<OsmRegion> neighbors) throws IOException {
-        for (OsmRegion neighbor : neighbors) {
-            oneNeighborValidate(region, neighbor);
-            neighbor.clearAdjacencyList();
-        }
-
-        ValidationResult validationResult =
-                new ValidationResult(region.getId(), region.getPath(), region.getIsolatedWaysFromO5M());
-        region.clearAdjacencyList();
-        return validationResult;
-    }*/
-    private void oneNeighborValidate(AdjacencyList regionAdjList, AdjacencyList neighborAdjList) {
+    private void validateTwoAdjList(AdjacencyList regionAdjList, AdjacencyList neighborAdjList) {
 
         log.info("{}: with neighbor {}", regionAdjList.getRegionName(), neighborAdjList.getRegionName());
-
-//        if (region.getAdjacencyList() == null || neighbor.getAdjacencyList() == null) return;
 
         //1. сет id всех изолированных компонентов региона
         Set<Integer> regionIsolatedComponentIds = regionAdjList.getIsolatedComponentIds();
@@ -106,39 +94,4 @@ public class NeighborsConnectivityValidator {
             }
         }
     }
-
-   /* private void oneNeighborValidate(OsmRegion region, OsmRegion neighbor) {
-
-        log.info("{}: with neighbor {}", region.getName(), neighbor.getName());
-
-        if (region.getAdjacencyList() == null || neighbor.getAdjacencyList() == null) return;
-
-        AdjacencyList regionAdjacencyList = region.getAdjacencyList();
-        AdjacencyList neighborAdjacencyList = neighbor.getAdjacencyList();
-
-        //1. сет id всех изолированных компонентов региона
-        Set<Integer> regionIsolatedComponentIds = regionAdjacencyList.getIsolatedComponentIds();
-
-        //2.сет id изолированных компонент региона с учетом соседа
-        Set<Integer> filteredRegionIsolatedComponentIds = regionAdjacencyList.getAllMarkedNodes()
-                .stream()
-                //если нода входит в состав изолированных компонент графа региона
-                .filter(markedNode -> regionIsolatedComponentIds.contains(markedNode.getConnectedComponentId()))
-                //если нода есть у соседа, и если у соседа она не входит в сет изолированных компонент у соседа
-                .filter(markedNode -> neighborAdjacencyList.containsMarkedNode(markedNode.getId()) &&
-                                       !neighborAdjacencyList.getIsolatedComponentIds().contains(
-                                               neighborAdjacencyList.getMarkedNode(markedNode.getId()).getConnectedComponentId()))
-                //получаем айдишники всех изолированных компонент
-                .collect(Collectors.groupingBy(MarkedNode::getConnectedComponentId))
-                .keySet();
-
-        //изменение компонентов графа: если компонент приконнекчен к соседу, то помечаем его как неизолированный
-        List<ConnectedComponent> regionConnectedComponents = regionAdjacencyList.getConnectedComponents();
-        for (ConnectedComponent connectedComponent : regionConnectedComponents) {
-            if (filteredRegionIsolatedComponentIds.contains(connectedComponent.getId())) {
-                System.out.println("Граф " + connectedComponent.getId() + " setIsolated(false)");
-                connectedComponent.setIsolated(false);
-            }
-        }
-    }*/
 }
