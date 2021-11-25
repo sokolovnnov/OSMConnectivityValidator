@@ -1,4 +1,4 @@
-package com.github.sokolovnnov.connectivitytest.repository.jdbc.way;
+package com.github.sokolovnnov.connectivitytest.repository.jdbc;
 
 import com.github.sokolovnnov.connectivitytest.repository.WayRepository;
 import com.github.sokolovnnov.validatorsite.model.SimpleNode;

@@ -2,7 +2,7 @@ package com.github.sokolovnnov.connectivitytest.service;
 
 import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import org.springframework.stereotype.Service;
-import com.github.sokolovnnov.connectivitytest.repository.jdbc.region.RegionJdbcRepository;
+import com.github.sokolovnnov.connectivitytest.repository.jdbc.RegionJdbcRepository;
 
 import java.util.ArrayList;
 import java.util.List;

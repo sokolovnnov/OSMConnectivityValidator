@@ -1,4 +1,4 @@
-package com.github.sokolovnnov.connectivitytest.repository.jdbc.region;
+package com.github.sokolovnnov.connectivitytest.repository.jdbc;
 
 import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import org.springframework.dao.support.DataAccessUtils;
