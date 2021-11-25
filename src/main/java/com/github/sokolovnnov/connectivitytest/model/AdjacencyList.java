@@ -1,7 +1,7 @@
-package com.github.sokolovnnov.connectivitytest.validator.model;
+package com.github.sokolovnnov.connectivitytest.model;
 
 import org.alex73.osmemory.OsmWay;
-import com.github.sokolovnnov.connectivitytest.validator.StorageUtil;
+import com.github.sokolovnnov.connectivitytest.StorageUtil;
 
 import java.io.FileNotFoundException;
 import java.io.Serial;

@@ -1,8 +1,8 @@
-package com.github.sokolovnnov.connectivitytest.validator.service;
+package com.github.sokolovnnov.connectivitytest.service;
 
-import com.github.sokolovnnov.connectivitytest.validator.model.OsmRegion;
+import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import org.springframework.stereotype.Service;
-import com.github.sokolovnnov.connectivitytest.validator.repository.jdbc.region.RegionJdbcRepository;
+import com.github.sokolovnnov.connectivitytest.repository.jdbc.region.RegionJdbcRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.github.sokolovnnov.connectivitytest.validator.repository;
+package com.github.sokolovnnov.connectivitytest.repository;
 
 import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 

@@ -1,6 +1,6 @@
-package com.github.sokolovnnov.connectivitytest.validator.repository.jdbc.way;
+package com.github.sokolovnnov.connectivitytest.repository.jdbc.way;
 
-import com.github.sokolovnnov.connectivitytest.validator.repository.WayRepository;
+import com.github.sokolovnnov.connectivitytest.repository.WayRepository;
 import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

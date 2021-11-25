@@ -1,6 +1,6 @@
-package com.github.sokolovnnov.connectivitytest.validator.repository.jdbc.region;
+package com.github.sokolovnnov.connectivitytest.repository.jdbc.region;
 
-import com.github.sokolovnnov.connectivitytest.validator.model.OsmRegion;
+import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

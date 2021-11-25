@@ -1,4 +1,4 @@
-package com.github.sokolovnnov.connectivitytest.validator.model;
+package com.github.sokolovnnov.connectivitytest.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

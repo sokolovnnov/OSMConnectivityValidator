@@ -1,10 +1,10 @@
-package com.github.sokolovnnov.connectivitytest.validator.service;
+package com.github.sokolovnnov.connectivitytest.service;
 
-import com.github.sokolovnnov.connectivitytest.validator.StorageUtil;
-import com.github.sokolovnnov.connectivitytest.validator.repository.WayRepository;
+import com.github.sokolovnnov.connectivitytest.StorageUtil;
+import com.github.sokolovnnov.connectivitytest.repository.WayRepository;
 import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 import org.springframework.stereotype.Service;
-import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
+import com.github.sokolovnnov.connectivitytest.model.ValidationResult;
 
 import java.util.List;
 

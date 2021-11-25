@@ -1,12 +1,11 @@
 package com.github.sokolovnnov.connectivitytest;
 
-import com.github.sokolovnnov.connectivitytest.validator.StorageUtil;
-import com.github.sokolovnnov.connectivitytest.validator.model.OsmRegion;
-import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
-import com.github.sokolovnnov.connectivitytest.validator.repository.inMemory.IsolatedWayInMemoryRepository;
-import com.github.sokolovnnov.connectivitytest.validator.service.NodeService;
-import com.github.sokolovnnov.connectivitytest.validator.service.RegionService;
-import com.github.sokolovnnov.connectivitytest.validator.validator.ConnectivityValidator;
+import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
+import com.github.sokolovnnov.connectivitytest.model.ValidationResult;
+import com.github.sokolovnnov.connectivitytest.repository.inMemory.IsolatedWayInMemoryRepository;
+import com.github.sokolovnnov.connectivitytest.service.NodeService;
+import com.github.sokolovnnov.connectivitytest.service.RegionService;
+import com.github.sokolovnnov.connectivitytest.validators.ConnectivityValidator;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.util.List;

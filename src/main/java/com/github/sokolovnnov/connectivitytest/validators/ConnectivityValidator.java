@@ -1,14 +1,14 @@
-package com.github.sokolovnnov.connectivitytest.validator.validator;
+package com.github.sokolovnnov.connectivitytest.validators;
 
-import com.github.sokolovnnov.connectivitytest.validator.StorageUtil;
-import com.github.sokolovnnov.connectivitytest.validator.model.AdjacencyList;
-import com.github.sokolovnnov.connectivitytest.validator.model.ConnectedComponent;
-import com.github.sokolovnnov.connectivitytest.validator.model.MarkedNode;
-import com.github.sokolovnnov.connectivitytest.validator.model.OsmRegion;
+import com.github.sokolovnnov.connectivitytest.model.AdjacencyList;
+import com.github.sokolovnnov.connectivitytest.model.ConnectedComponent;
+import com.github.sokolovnnov.connectivitytest.model.MarkedNode;
+import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
+import com.github.sokolovnnov.connectivitytest.StorageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
+import com.github.sokolovnnov.connectivitytest.model.ValidationResult;
 
 import java.io.IOException;
 import java.util.*;

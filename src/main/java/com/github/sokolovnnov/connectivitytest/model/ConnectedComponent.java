@@ -1,4 +1,4 @@
-package com.github.sokolovnnov.connectivitytest.validator.model;
+package com.github.sokolovnnov.connectivitytest.model;
 
 import java.io.Serializable;
 

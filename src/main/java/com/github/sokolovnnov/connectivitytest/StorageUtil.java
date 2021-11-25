@@ -1,10 +1,10 @@
-package com.github.sokolovnnov.connectivitytest.validator;
+package com.github.sokolovnnov.connectivitytest;
 
-import com.github.sokolovnnov.connectivitytest.validator.model.AdjacencyList;
+import com.github.sokolovnnov.connectivitytest.model.AdjacencyList;
 import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 import com.github.sokolovnnov.validatorsite.repo.inmemory.IsolatedNodes;
 import org.alex73.osmemory.*;
-import com.github.sokolovnnov.connectivitytest.validator.model.ValidationResult;
+import com.github.sokolovnnov.connectivitytest.model.ValidationResult;
 
 import java.io.*;
 import java.util.*;
