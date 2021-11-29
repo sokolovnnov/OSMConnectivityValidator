@@ -1,4 +1,4 @@
-package com.github.sokolovnnov.connectivitytest.repository.jdbc;
+package com.github.sokolovnnov.connectivitytest.repository.jdbc.region;
 
 import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import org.springframework.dao.support.DataAccessUtils;
@@ -14,11 +14,11 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class RegionJdbcRepository {
+public class JdbcRegionRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public RegionJdbcRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcRegionRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

@@ -2,7 +2,7 @@ package com.github.sokolovnnov.connectivitytest;
 
 import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import com.github.sokolovnnov.connectivitytest.model.ValidationResult;
-import com.github.sokolovnnov.connectivitytest.repository.inMemory.IsolatedWayInMemoryRepository;
+import com.github.sokolovnnov.connectivitytest.repository.inMemory.InMemoryIsolatedWayRepository;
 import com.github.sokolovnnov.connectivitytest.service.NodeService;
 import com.github.sokolovnnov.connectivitytest.service.RegionService;
 import com.github.sokolovnnov.connectivitytest.validators.ConnectivityValidator;
@@ -25,6 +25,7 @@ public class Main {
             NodeService nodeResultService = appCtx.getBean(NodeService.class);
             ConnectivityValidator connectivityValidator = appCtx.getBean(ConnectivityValidator.class);
             RegionService regionService = appCtx.getBean(RegionService.class);
+            InMemoryIsolatedWayRepository repository = appCtx.getBean(InMemoryIsolatedWayRepository.class);
 
             List<OsmRegion> regions = regionService.getAll();
 
@@ -34,12 +35,12 @@ public class Main {
 //            }
 
             List<ValidationResult> results = connectivityValidator.validate(regions);
-            for (ValidationResult result: results){
+            for (ValidationResult result : results) {
                 nodeResultService.save(result);
             }
 
-            StorageUtil.serializeInMemoryRepository(IsolatedWayInMemoryRepository.getIsolatedNodes());
-
+//            SerializeUtils.serializeInMemoryRepository(repository.getIsolatedNodes());
+            SerializeUtils.toJson(repository.getIsolatedNodes().simpleNodes);
         }
     }
 }

@@ -1,10 +1,11 @@
 package com.github.sokolovnnov.connectivitytest.validators;
 
+import com.github.sokolovnnov.connectivitytest.SerializeUtils;
 import com.github.sokolovnnov.connectivitytest.model.AdjacencyList;
 import com.github.sokolovnnov.connectivitytest.model.ConnectedComponent;
 import com.github.sokolovnnov.connectivitytest.model.MarkedNode;
 import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
-import com.github.sokolovnnov.connectivitytest.StorageUtil;
+import com.github.sokolovnnov.connectivitytest.O5mStorageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -43,12 +44,12 @@ public class ConnectivityValidator {
         AdjacencyList adjacencyList = new AdjacencyList(region);
         adjacencyList.calculate();
         adjacencyList.markComponents();
-        StorageUtil.serializeAdjList(adjacencyList);
+        SerializeUtils.serializeAdjList(adjacencyList);
     }
 
     //fixme Exception
     private ValidationResult validateWithAllNeighbors(OsmRegion region) throws IOException, ClassNotFoundException {
-        AdjacencyList adjacencyRegionList = StorageUtil.deSerializeAdjList(region.getPath());
+        AdjacencyList adjacencyRegionList = SerializeUtils.deSerializeAdjList(region.getPath());
 
         System.out.println(region.getName() + " - соседей: " + region.getNeighbors().size());
         for (OsmRegion osmRegion: region.getNeighbors()) {
@@ -58,11 +59,11 @@ public class ConnectivityValidator {
 
         for (OsmRegion neighbor: region.getNeighbors()){
             if (neighbor == null) continue;
-            AdjacencyList adjacencyNeighborList = StorageUtil.deSerializeAdjList(neighbor.getPath());
+            AdjacencyList adjacencyNeighborList = SerializeUtils.deSerializeAdjList(neighbor.getPath());
             validateTwoAdjList(adjacencyRegionList, adjacencyNeighborList);
         }
 
-        return new ValidationResult(region.getId(), region.getPath(), StorageUtil.readIsolatedWays(adjacencyRegionList));
+        return new ValidationResult(region.getId(), region.getPath(), O5mStorageUtils.readIsolatedWays(adjacencyRegionList));
     }
 
     private void validateTwoAdjList(AdjacencyList regionAdjList, AdjacencyList neighborAdjList) {

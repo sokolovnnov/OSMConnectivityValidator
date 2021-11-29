@@ -5,12 +5,10 @@ import java.io.Serializable;
 public class ConnectedComponent implements Serializable {
 
     private final int id;
-    private final int size;
     private boolean isolated;
 
     public ConnectedComponent(int id, int size) {
         this.id = id;
-        this.size = size;
         this.isolated = size < 1000;
     }
 

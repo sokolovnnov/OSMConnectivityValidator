@@ -9,7 +9,7 @@ public class MarkedNode implements Serializable {
     private long id;
     protected long[] wayIds; //веи в которые входит точка
     private boolean visited;
-    private int connectedComponentId;
+    private int connectedComponentId; //компонент связности в который входит точка
     protected long[] neighborNodeIds; // id соседних точек
 
     public MarkedNode(long id, long wayId, long[] neighborNodeIds) {

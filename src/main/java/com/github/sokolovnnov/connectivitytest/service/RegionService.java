@@ -2,7 +2,7 @@ package com.github.sokolovnnov.connectivitytest.service;
 
 import com.github.sokolovnnov.connectivitytest.model.OsmRegion;
 import org.springframework.stereotype.Service;
-import com.github.sokolovnnov.connectivitytest.repository.jdbc.RegionJdbcRepository;
+import com.github.sokolovnnov.connectivitytest.repository.jdbc.region.JdbcRegionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class RegionService {
 
-    private final RegionJdbcRepository repository;
+    private final JdbcRegionRepository repository;
 
-    public RegionService(RegionJdbcRepository repository) {
+    public RegionService(JdbcRegionRepository repository) {
         this.repository = repository;
     }
 

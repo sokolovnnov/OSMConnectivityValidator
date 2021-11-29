@@ -1,7 +1,7 @@
 package com.github.sokolovnnov.connectivitytest.model;
 
 import org.alex73.osmemory.OsmWay;
-import com.github.sokolovnnov.connectivitytest.StorageUtil;
+import com.github.sokolovnnov.connectivitytest.O5mStorageUtils;
 
 import java.io.FileNotFoundException;
 import java.io.Serial;
@@ -15,7 +15,7 @@ public class AdjacencyList implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private final String regionName;
-    private ArrayList<ConnectedComponent> connectedComponents = new ArrayList<>();
+    private final ArrayList<ConnectedComponent> connectedComponents = new ArrayList<>();
     private HashMap<Long, MarkedNode> innerAdjList;
 
     public AdjacencyList(OsmRegion region) {
@@ -24,7 +24,7 @@ public class AdjacencyList implements Serializable {
 
     //fixme Exception
     public void calculate() throws FileNotFoundException {
-        List<OsmWay> osmWays = StorageUtil.readWays(regionName);
+        List<OsmWay> osmWays = O5mStorageUtils.readWays(regionName);
         innerAdjList = createAdjacencyListForWays(osmWays);
     }
 

@@ -1,8 +1,8 @@
 package com.github.sokolovnnov.connectivitytest;
 
 import com.github.sokolovnnov.connectivitytest.model.AdjacencyList;
-import com.github.sokolovnnov.validatorsite.model.SimpleNode;
-import com.github.sokolovnnov.validatorsite.repo.inmemory.IsolatedNodes;
+import com.github.sokolovnnov.connectivitytest.model.SimpleNode;
+import com.github.sokolovnnov.connectivitytest.repository.inMemory.IsolatedNodeStorage;
 import org.alex73.osmemory.*;
 import com.github.sokolovnnov.connectivitytest.model.ValidationResult;
 
@@ -11,9 +11,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
-public class StorageUtil {
+public class O5mStorageUtils {
 
-    private static final String SERIALIZE_PATH = "d:\\osmtmp\\serialized\\";
     private static final String PATH = "d:\\osmtmp\\";
     private static final float DIVIDER = 0.0000001F;
 
@@ -61,7 +60,7 @@ public class StorageUtil {
     }
 
     public static Set<OsmWay> readIsolatedWays(AdjacencyList adjacencyList) throws FileNotFoundException {
-        ArrayList<OsmWay> allOsmWays = StorageUtil.readWays(adjacencyList.getRegionName());
+        ArrayList<OsmWay> allOsmWays = O5mStorageUtils.readWays(adjacencyList.getRegionName());
         Map<Long, OsmWay> allOsmWaysMap = allOsmWays.stream().collect(Collectors.toMap(OsmBase::getId, osmWay -> osmWay,
                 (osmWay1, osmWay2) -> osmWay1));
 
@@ -92,38 +91,16 @@ public class StorageUtil {
             long[] nodeIds = osmWay.getNodeIds();
             for (int orderInWay = 0; orderInWay < nodeIds.length; orderInWay++) {
                 IOsmNode osmNode = memoryStorage.getNodeById(nodeIds[orderInWay]);
-                nodes.add(new SimpleNode(null, osmNode.getId(), osmWay.getId(), result.getRegionId(), orderInWay,
+                nodes.add(new SimpleNode(
+//                        null,
+                        osmNode.getId(),
+                        osmWay.getId(),
+                        result.getRegionId(),
+                        orderInWay,
                         osmNode.getLat() * DIVIDER,
                         osmNode.getLon() * DIVIDER));
             }
         }
         return nodes;
-    }
-
-    public static void serializeAdjList(AdjacencyList adjacencyList) throws IOException {
-        String fileName = adjacencyList.getRegionName();
-        FileOutputStream outputStream =
-                new FileOutputStream(SERIALIZE_PATH + fileName.substring(0, fileName.length() - 4));
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
-        objectOutputStream.writeObject(adjacencyList);
-        objectOutputStream.close();
-    }
-
-    public static AdjacencyList deSerializeAdjList(String path) throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(SERIALIZE_PATH + path.substring(0, path.length() - 4));
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-        ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
-        AdjacencyList adjacencyList = (AdjacencyList) objectInputStream.readObject();
-        objectInputStream.close();
-        return adjacencyList;
-    }
-
-    public static void serializeInMemoryRepository(IsolatedNodes isolatedNodes) throws IOException {
-        FileOutputStream outputStream = new FileOutputStream(SERIALIZE_PATH + "repository");
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
-        objectOutputStream.writeObject(isolatedNodes);
-        objectOutputStream.close();
     }
 }

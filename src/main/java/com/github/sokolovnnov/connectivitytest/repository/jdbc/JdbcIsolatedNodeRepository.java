@@ -1,7 +1,7 @@
 package com.github.sokolovnnov.connectivitytest.repository.jdbc;
 
+import com.github.sokolovnnov.connectivitytest.model.SimpleNode;
 import com.github.sokolovnnov.connectivitytest.repository.WayRepository;
-import com.github.sokolovnnov.validatorsite.model.SimpleNode;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,13 +15,13 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class IsolatedWayJdbcRepository implements WayRepository {
+public class JdbcIsolatedNodeRepository implements WayRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final SimpleJdbcInsert insert;
 
-    public IsolatedWayJdbcRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
+    public JdbcIsolatedNodeRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.insert = new SimpleJdbcInsert(jdbcTemplate)
@@ -38,7 +38,7 @@ public class IsolatedWayJdbcRepository implements WayRepository {
                 .addValue("lat", simpleNode.getLat())
                 .addValue("lon", simpleNode.getLon());
         Number newId = insert.executeAndReturnKey(map);
-        simpleNode.setId(newId.intValue());
+//        simpleNode.setId(newId.intValue());
     }
 
     @Override
