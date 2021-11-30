@@ -22,7 +22,7 @@ public class JdbcRegionRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final RowMapper<OsmRegion> rowMapper = new RowMapper<>() {
+    private final RowMapper<OsmRegion> rowMapper = new RowMapper() {
         @Override
         public OsmRegion mapRow(ResultSet rs, int rowNum) throws SQLException {
             OsmRegion region = new OsmRegion();
