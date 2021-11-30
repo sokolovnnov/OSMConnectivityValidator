@@ -13,7 +13,7 @@
     <name>Connectivity test</name>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.source>16</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -100,19 +100,19 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+          <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
                 <configuration>
-                  <!--  <filters>
+                  &lt;!&ndash;  <filters>
                         <filter>
                             <artifact>*:*</artifact>
                             <excludes>
                                 <exclude>META-INF/**</exclude>
                             </excludes>
                         </filter>
-                    </filters>-->
+                    </filters>&ndash;&gt;
                 </configuration>
                 <executions>
                     <execution>
@@ -137,16 +137,16 @@
                                     <resource>spring/spring-db.xml</resource>
                                     <resource>spring/spring-mvc.xml</resource>
                                     <resource>tomcat/context.xml</resource>
-<!--                                    <resource>META-INF/magic.xml</resource>-->
-                                    <!-- Add this to enable loading of DTDs
+&lt;!&ndash;                                    <resource>META-INF/magic.xml</resource>&ndash;&gt;
+                                    &lt;!&ndash; Add this to enable loading of DTDs
                                     <ignoreDtd>false</ignoreDtd>
-                                    -->
+                                    &ndash;&gt;
                                 </transformer>
                             </transformers>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
         </plugins>
 
