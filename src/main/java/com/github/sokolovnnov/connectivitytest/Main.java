@@ -39,8 +39,8 @@ public class Main {
                 nodeResultService.save(result);
             }
 
-//            SerializeUtils.serializeInMemoryRepository(repository.getIsolatedNodes());
-            SerializeUtils.toJson(repository.getIsolatedNodes().simpleNodes);
+            SerializeUtils.serializeInMemoryRepository(repository.getIsolatedNodes());
+//            SerializeUtils.toJson(repository.getIsolatedNodes().simpleNodes);
         }
     }
 }
