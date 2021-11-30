@@ -4,14 +4,14 @@ import org.alex73.osmemory.OsmWay;
 import com.github.sokolovnnov.connectivitytest.O5mStorageUtils;
 
 import java.io.FileNotFoundException;
-import java.io.Serial;
+//import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class AdjacencyList implements Serializable {
 
-    @Serial
+//    @Serial
     private static final long serialVersionUID = 1L;
 
     private final String regionName;
